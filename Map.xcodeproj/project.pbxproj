@@ -17,6 +17,8 @@
 		765FC2452879DAD900E0C8BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765FC21B2879DAD600E0C8BA /* ContentView.swift */; };
 		765FC2462879DAD900E0C8BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 765FC21C2879DAD800E0C8BA /* Assets.xcassets */; };
 		765FC2472879DAD900E0C8BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 765FC21C2879DAD800E0C8BA /* Assets.xcassets */; };
+		765FC2572879DC0D00E0C8BA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765FC2562879DC0D00E0C8BA /* MapView.swift */; };
+		765FC2582879DC0D00E0C8BA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765FC2562879DC0D00E0C8BA /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,7 @@
 		765FC23A2879DAD900E0C8BA /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		765FC23E2879DAD900E0C8BA /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		765FC2402879DAD900E0C8BA /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		765FC2562879DC0D00E0C8BA /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,7 @@
 			children = (
 				765FC21A2879DAD600E0C8BA /* MapApp.swift */,
 				765FC21B2879DAD600E0C8BA /* ContentView.swift */,
+				765FC2562879DC0D00E0C8BA /* MapView.swift */,
 				765FC21C2879DAD800E0C8BA /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -300,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				765FC2442879DAD900E0C8BA /* ContentView.swift in Sources */,
+				765FC2572879DC0D00E0C8BA /* MapView.swift in Sources */,
 				765FC2422879DAD900E0C8BA /* MapApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				765FC2452879DAD900E0C8BA /* ContentView.swift in Sources */,
+				765FC2582879DC0D00E0C8BA /* MapView.swift in Sources */,
 				765FC2432879DAD900E0C8BA /* MapApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
