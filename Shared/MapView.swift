@@ -8,13 +8,17 @@
 import SwiftUI
 import MapKit
 
-struct MapView: UIViewRepresentable {
-    func makeUIView(context: Context) -> MKMapView {
-        MKMapView()
-    }
+struct MapView: View {
+     
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 35.6586,
+                                       longitude: 139.7454),
+        latitudinalMeters: 1000,
+        longitudinalMeters: 1000
+    )
     
-    func updateUIView(_ uiView: MKMapView, context: Context) {
-        
+    var body: some View {
+        Map(coordinateRegion: $region)
     }
 }
 
