@@ -9,24 +9,41 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
+    @ObservedObject var mapModel = MapModel()
+    
     @State var inputText: String = ""
     @State var dispSearchWord: String = ""
     @State var dispMapType: MKMapType = .standard
-
+    
     var body: some View {
         VStack {
             TextField("キーワードを入力してください",
                       text: $inputText, onCommit: {
-                      dispSearchWord = inputText
+                dispSearchWord = inputText
                 print("入力したキーワード：" + dispSearchWord)
+                
+                CLGeocoder().geocodeAddressString(
+                    dispSearchWord,
+                    completionHandler: { (placemarks, error) in
+                        if let unwrapPlacemarks = placemarks,
+                           let firstPlacemark = unwrapPlacemarks.first,
+                           let location = firstPlacemark.location {
+                            mapModel.region = MKCoordinateRegion(
+                                center: CLLocationCoordinate2D(
+                                    latitude: location.coordinate.latitude,
+                                    longitude: location.coordinate.longitude
+                                ),
+                                latitudinalMeters: 1000,
+                                longitudinalMeters: 1000
+                            )
+                        }
+                    })
             })
             .padding()
-
+            
             ZStack(alignment: .bottomTrailing) {
-                MapView(
-                    searchWord: dispSearchWord,
-                    mapType: dispMapType)
-
+                MapView(mapModel: mapModel)
+                
                 Button(action: {
                     // 標準 -> 航空写真 -> 航空写真+標準 -> 3D Flyovre
                     //   ->　3D Flyovre+標準 -> 交通機関
