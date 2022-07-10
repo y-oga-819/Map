@@ -8,44 +8,33 @@
 import SwiftUI
 import MapKit
 
-struct MapView: UIViewRepresentable {
-    let searchWord: String
-    let mapType: MKMapType
+class MapModel: ObservableObject {
+    @Published var region: MKCoordinateRegion = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(
+            latitude: 35.6812362,
+            longitude: 139.7671248
+        ),
+        latitudinalMeters: 1000,
+        longitudinalMeters: 1000
+    )
+    @Published var mapType: MKMapType = .standard
+}
 
-    func makeUIView(context: Context) -> MKMapView {
-        MKMapView()
-    }
+struct MapView: View {
+    @ObservedObject var mapModel: MapModel
 
-    func updateUIView(_ uiView: MKMapView, context: Context) {
-        print(searchWord)
+    @State private var userTrackingMode: MapUserTrackingMode = .none
 
-        uiView.mapType = mapType
-
-        let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(
-            searchWord,
-            completionHandler: { (placemarks, error) in
-            if let unwrapPlacemarks = placemarks,
-               let firstPlacemark = unwrapPlacemarks.first,
-               let location = firstPlacemark.location {
-                let targetCoordinnate = location.coordinate
-                print(targetCoordinnate)
-                
-                let pin = MKPointAnnotation()
-                pin.coordinate = targetCoordinnate
-                pin.title = searchWord
-                uiView.addAnnotation(pin)
-                uiView.region = MKCoordinateRegion(
-                    center: targetCoordinnate,
-                    latitudinalMeters: 500,
-                    longitudinalMeters: 500)
-            }
-        })
+    var body: some View {
+        Map(coordinateRegion: $mapModel.region,
+            interactionModes: .all,
+            showsUserLocation: true,
+            userTrackingMode: $userTrackingMode)
     }
 }
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(searchWord: "東京タワー", mapType: .standard)
+        MapView(mapModel: MapModel())
     }
 }
